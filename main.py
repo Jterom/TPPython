@@ -17,7 +17,7 @@ def BusCrea():
     Label(root, text="Bus "+str(b.getNumBus()))
     BBus.grid(row=1, column=int(b.getNumBus())+3)
 
-#Page qui affiche les bouttons pour ajouter des Eleves ou des étudiants au bus sélectionné
+#Page qui affiche les boutons pour ajouter des élèves ou des étudiants au bus sélectionné
 def View(b):
     win = Toplevel(root)
     win.title("ajout eleve / prof")
@@ -48,17 +48,17 @@ def verification(win, b):
 
 
 
-#permet d'ajouter un eleve et de l'afficher en dessou du bus
+#permet d'ajouter un élève et de l'afficher en dessou du bus
 def ajoutEleve(nom, classe, b):
     if int(len(b.Eleves)+len(b.Prof)) < int(b.Place) and int(len(b.Eleves)) < int(len(b.Prof))*10 and classe != "":
         if b.verifierClasse(classe) == 1:
             e = Eleve.Eleve(nom, classe)
             b.addEleve(e)
-            b.PUTE(e)
-            btEleve = Button(root, text=nom,command=lambda: elevePresent(e, root)).grid(row=int(len(b.Eleves))+int(len(b.Prof)+1), column=int(b.getNumBus())+3)
+            b.attribEleve(e)
+            btEleve = Button(root, text=nom, bg="white", command=lambda: elevePresent(e, root)).grid(row=int(len(b.Eleves))+int(len(b.Prof)+1), column=int(b.getNumBus())+3)
 
 
-#la meme chose que pour la fonction ajoutEleve mais pour les profs
+#la même chose que pour la fonction ajoutEleve mais pour les profs
 def ajoutProf(nom, b):
     if int(len(b.Eleves)+len(b.Prof)) < int(b.Place):
         p = Prof.Prof(nom)
@@ -71,11 +71,15 @@ def ajoutProf(nom, b):
 
 
 
-#passe un eleve au statut présent
+#passe un élève au statut présent
 def elevePresent(e, root):
     e.present = 1
 
-Button(root, text="BUS", command=BusCrea).grid(row=0, column=0)
-Label(root, text="Pour mettre présent un eleve cliquez dessus").grid(row=0, column=1)
+#fonction pour changer la couleur du bouton lorsqu'un élève est mis présent (ne marche pas)
+#def change_color(root):
+#    root.btEleve.configure(bg="green")
+
+Button(root, text="Ajouter un Bus", command=BusCrea).grid(row=0, column=0)
+Label(root, text="Pour mettre présent un élève cliquez dessus").grid(row=0, column=1)
 
 root.mainloop()

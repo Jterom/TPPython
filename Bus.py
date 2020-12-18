@@ -6,19 +6,23 @@ class Bus:
         self.numBus = numBus
         self.Eleves = []
         self.Prof = []
-        self.Place = 15
+        self.Place = 20
         self.Classe = []
 
+#Fonction pour ajouter un élève
     def addEleve(self, Eleve):
         self.Eleves.insert(len(self.Eleves),Eleve)
 
+#Fonction pour ajouter un prof
     def addProf(self, Prof):
         self.Prof.insert(len(self.Prof), Prof)
 
+#Fonction pour savoir sur quel Bus de la liste on se trouve
     def getNumBus(self):
         return self.numBus
 
-    def PUTE(self, e):
+#appelle la méthode addEleve de Prof pour chaque élève et chaque prof
+    def attribEleve(self, e):
         i=0
         for p in self.Prof:
             if i == 0:
@@ -40,6 +44,6 @@ class Bus:
     def verifierPresent(self):
         for e in self.Eleves:
             if e.present == 0:
-                return "Le bus n'est pas près"
+                return "Le bus n'est pas prêt"
 
-        return "Le bus est près"
+        return "Le bus est prêt"
